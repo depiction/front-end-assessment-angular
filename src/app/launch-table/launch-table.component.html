@@ -1,0 +1,57 @@
+
+<ng-container *ngIf="loaded">
+	<ng-container *ngIf="launches.length && !serviceError">
+		<div class="table-actions">
+			<button type="button" class="refresh" (click)="getLaunches(true)">Refresh</button>
+			<p class="notification" [class.show]="showNotification">Updated</p>
+			<form class="filters">
+				<label class="custom-checkbox" *ngFor="let list of filterOptions">
+					<input type="checkbox" value="{{list.value}}" (change)="updateFilters(list,$event)">{{list.name}}
+					<span class="checkmark"></span>
+				</label>
+			</form>
+			<p class="showing">
+				<span *ngIf="filteredLaunches">Showing {{filteredLaunches.length}} of</span>
+				{{this.launches.length}} launches</p>
+		</div>
+		<table class="launch-table">
+			<thead>
+				<th>Badge</th>
+				<th>Rocket Name</th>
+				<th>Rocket Type</th>
+				<th class="launch-date {{this.sortType}}" (click)="toggleSort()">Launch Date</th>
+				<th>Details</th>
+				<th>ID</th>
+				<th>Article</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let launch of (filteredLaunches || launches)">
+					<td data-label="Badge" class="badge">
+						<img src="{{launch.links.mission_patch}}" *ngIf="launch.links.mission_patch" />
+					</td>
+					<td data-label="Rocket Name">{{launch.rocket.rocket_name}}</td>
+					<td data-label="Rocket Type">{{launch.rocket.rocket_type}}</td>
+					<td data-label="Launch Date" class="launch-date">{{launch.launch_date_local | date: 'MM/dd/yyyy'}}</td>
+					<td data-label="Details">
+						<span class="ellipsis"><span>
+							{{launch.details}}
+						</span></span></td>
+					<td data-label="ID">{{launch.flight_number}}</td>
+					<td data-label="Article" class="article">
+						<a class="link" href="{{launch.links.article_link}}" target="_blank" *ngIf="launch.links.article_link">
+							Link
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</ng-container>
+</ng-container>
+
+<ng-container *ngIf="loaded && !launches.length && !serviceError">
+	<p class="message">No launches found.</p>
+</ng-container>
+
+<ng-container *ngIf="serviceError">
+    <p class="message error">Error getting launch data.</p>
+</ng-container>

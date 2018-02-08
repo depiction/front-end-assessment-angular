@@ -1,0 +1,83 @@
+/* @include gradient(#dfdfdf,#f8f8f8, vertical); */
+// copied from http://www.developerdrive.com/2014/11/15-essential-sass-mixins/
+@mixin gradient($start-color, $end-color, $orientation) {
+    background: $start-color;
+
+    @if $orientation == vertical {
+        // vertical
+        background: -moz-linear-gradient(top, $start-color 0%, $end-color 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start-color), color-stop(100%,$end-color));
+        background: -webkit-linear-gradient(top, $start-color 0%,$end-color 100%);
+        background: -o-linear-gradient(top, $start-color 0%,$end-color 100%);
+        background: -ms-linear-gradient(top, $start-color 0%,$end-color 100%);
+        background: linear-gradient(to bottom, $start-color 0%,$end-color 100%);
+    }
+    @else if $orientation == horizontal {
+        // horizontal
+        background: -moz-linear-gradient(left, $start-color 0%, $end-color 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,$start-color), color-stop(100%,$end-color));
+        background: -webkit-linear-gradient(left, $start-color 0%,$end-color 100%);
+        background: -o-linear-gradient(left, $start-color 0%,$end-color 100%);
+        background: -ms-linear-gradient(left, $start-color 0%,$end-color 100%);
+        background: linear-gradient(to right, $start-color 0%,$end-color 100%);
+    }
+    @else {
+        // radial
+        background: -moz-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%);
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$start-color), color-stop(100%,$end-color));
+        background: -webkit-radial-gradient(center, ellipse cover, $start-color 0%,$end-color 100%);
+        background: -o-radial-gradient(center, ellipse cover, $start-color 0%,$end-color 100%);
+        background: -ms-radial-gradient(center, ellipse cover, $start-color 0%,$end-color 100%);
+        background: radial-gradient(ellipse at center, $start-color 0%,$end-color 100%);
+    }
+}
+
+@mixin align-center-center($position: relative) {
+	left: 50%;
+	position: $position;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin align-vertical-center($position: relative) {
+	position: $position;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@mixin align-horizontal-center($position: relative) {
+    position: $position;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin multi-line-ellipis($font-size: 14px, $line-height: 1.25, $lines-to-show: 2, $transparent-bg: "false") {
+    max-height: $font-size * $line-height * $lines-to-show;
+    overflow: hidden;
+    position: relative;
+
+    @if($transparent-bg == "false") {
+        &:after {
+            @include gradient(rgba(255, 255, 255, 0), $white, "horizontal");
+            content: "";
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 1.2em;
+        }
+    }
+
+    @supports (-webkit-line-clamp: $lines-to-show) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: $lines-to-show;
+        -webkit-box-orient: vertical;
+
+        &:after {
+            display: none;
+        }
+    }
+}
