@@ -110,11 +110,7 @@ export class LaunchTableComponent implements OnInit {
 					}
 
 					if(filter === 'reused') {
-						// convert reused object values into an array
-						const reused = Object.values(launch.reuse);
-
-						// add match if array contains any true values
-						if(reused.find(reuse => (reuse === true))) {
+						if(Object.values(launch.reuse).includes(true)) {
 							matches.push(true);
 						}
 					}
