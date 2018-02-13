@@ -6,6 +6,7 @@ import { LaunchService } from './services/launch.service';
 
 import { AppComponent } from './app.component';
 import { LaunchTableComponent } from './launch-table/launch-table.component';
+import { LazyLoadDirective } from './directives/lazy-load.directive';
 
 @NgModule({
 	imports: [
@@ -14,7 +15,8 @@ import { LaunchTableComponent } from './launch-table/launch-table.component';
 	],
 	declarations: [
 		AppComponent,
-		LaunchTableComponent
+		LaunchTableComponent,
+		LazyLoadDirective
 	],
 	providers: [
 		LaunchService

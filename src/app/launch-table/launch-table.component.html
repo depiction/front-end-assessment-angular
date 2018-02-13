@@ -27,7 +27,7 @@
 			<tbody>
 				<tr *ngFor="let launch of (filteredLaunches || launches)">
 					<td data-label="Badge" class="badge">
-						<img src="{{launch.links.mission_patch}}" *ngIf="launch.links.mission_patch" />
+						<img attr.data-src="{{launch.links.mission_patch}}" *ngIf="launch.links.mission_patch" appLazyLoad />
 					</td>
 					<td data-label="Rocket Name">{{launch.rocket.rocket_name}}</td>
 					<td data-label="Rocket Type">{{launch.rocket.rocket_type}}</td>
