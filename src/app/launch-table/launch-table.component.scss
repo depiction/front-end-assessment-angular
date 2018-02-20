@@ -11,7 +11,7 @@
 	.refresh {
 		background: transparent url('/assets/images/refresh.svg') center center no-repeat;
 		background-size: 20px 20px;
-		border: 1px solid $white;
+		border: 2px solid $white;
 		border-radius: 18px;
 		display: block;
 		float: left;
@@ -68,26 +68,30 @@
 		display: none;
 	}
 
-	th.launch-date {
-		cursor: pointer;
-		position: relative;
+	th {
+		font-weight: 500;
 
-		&:before {
-			background-color: $blue;
-			content: '';
-			display: block;
-			height: 4px;
-			left: 0;
-			position: absolute;
-			width: 100%;
-		}
+		&.launch-date {
+			cursor: pointer;
+			position: relative;
 
-		&.asc:before {
-			top: 0;
-		}
+			&:before {
+				background-color: $teal;
+				content: '';
+				display: block;
+				height: 4px;
+				left: 0;
+				position: absolute;
+				width: 100%;
+			}
 
-		&.desc:before {
-			bottom: 0;
+			&.asc:before {
+				top: 0;
+			}
+
+			&.desc:before {
+				bottom: 0;
+			}
 		}
 	}
 
@@ -162,6 +166,7 @@
 
 @media (min-width: 768px) {
 	.table-actions {
+		border-bottom-width: 0;
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
 
