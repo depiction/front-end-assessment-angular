@@ -4,6 +4,8 @@ This is an example of a completed Front End Assessment that potential hires take
 
 It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 
+Run `npm install -g @angular/cli` if needed.
+
 ## Development server
 
 Run `ng serve -aot` for a dev server with ahead of time compilation. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
